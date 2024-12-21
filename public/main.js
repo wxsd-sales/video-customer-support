@@ -1,6 +1,5 @@
-// const myServerUrl = 'https://video-support-widget-g2g-glitch.glitch.me/'; // Update this with your backend server URL
-const myServerUrl = 'http://localhost:3000'; // Update this with your backend server URL
-
+const myServerUrl = 'https://video-support-dec2024.glitch.me/';
+// const myServerUrl = 'http://localhost:3000'; // Update this with your backend server URL
 async function getAccessToken() {
     const url = myServerUrl + '/get-access-token';
     const requestOptions = {
