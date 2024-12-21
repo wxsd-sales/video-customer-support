@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/gh/WXSD-Sales/embeddable-meetings-widget/docs/bundle.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/gh/WXSD-Sales/embeddable-meetings-widget/docs/webex-widgets.css" /> -->
+    <!-- <link href="webex-widgets.css" /> -->
+    <title>Video Support</title>
+</head>
+<body>
+    <div id="video-container">
+        <p id="message"></p>
+        <div id="embeddable-meetings-widget"></div>
+    </div>
+        <script src="./main.js"> </script>
+        <script>
+            (async () => {
+                const token = await getAccessToken();
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const sipAddress = urlParams.get("sipAddress");
+                let message = urlParams.get("message");
+                if (message) {
+                    message = decodeURIComponent(message);
+                }
+                else {
+                    message = "Hi there! This is the Video Support Widget. Please wait for the host to start the meeting";
+                }
+                document.getElementById('message').textContent = message;
+                webexMeetingsWidget({accessToken : token,
+                    meetingDestination : sipAddress,
+                    theme : "light",
+                    draggable : true,
+                    width : "800px",
+                    height : "500px",
+                    layout : "Grid",
+                    inMeetingControls : ['mute-audio','leave-meeting'],
+                    interstitialControls : ['join-meeting']
+                });
+            })();
+        </script>
+</body>
+</html>
