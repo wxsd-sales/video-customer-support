@@ -15,12 +15,9 @@
   "author": "Victor Vazquez",
   "license": "ISC",
   "repository": {
-    "url": ""
+    "url": "https://glitch.com/edit/#!/glitch-hello-node"
   },
   "engines": {
     "node": "14.x"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/glitch-hello-node"
   }
 }
