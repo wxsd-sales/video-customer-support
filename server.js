@@ -3,18 +3,58 @@ const app = express();
 const axios = require('axios');
 const cors = require('cors');
 const path = require('path');
+const cron = require('node-cron');
 
 if (process.env.NODE_ENV !== 'production'){
   require('dotenv').config()
 }
 
-const token = process.env.TOKEN;
+const refreshToken = process.env.REFRESH_TOKEN;
+const clientId = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
 const port = 3000;
- 
+let guestIssuerServiceAppToken = '';
+
+async function refreshAccessToken() {
+  console.log('Refreshing access token');
+  const data = 
+    new URLSearchParams({
+    'grant_type': 'refresh_token',
+    'refresh_token': refreshToken,
+    'client_id': clientId,
+    'client_secret': clientSecret
+    });
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://webexapis.com/v1/access_token',
+    headers: { 
+      'Content-type': 'application/x-www-form-urlencoded'
+    },
+    data : data.toString()
+  }
+  try {
+    const response = await axios.request(config)
+    guestIssuerServiceAppToken = response.data.access_token
+    console.log('Refresh Access Token API status code:', response.status);
+  } catch (error) {
+    console.error('Error refreshing the access token:', error);
+  }  
+}
+
 app.use(cors()); // Enable CORS for all routes
 
 // Serve static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Refresh token the first time, and then run a cron job
+(async () => {
+  await refreshAccessToken();
+})();
+// every 2m = cron.schedule('*/2 * * * *', async () => refreshAccessToken());
+// every day at 13h
+cron.schedule('0 13 * * *', async () => refreshAccessToken());
 
 app.get('/get-access-token', async (req, res) => {
   let data = JSON.stringify({
@@ -27,7 +67,7 @@ app.get('/get-access-token', async (req, res) => {
     url: 'https://webexapis.com/v1/guests/token',
     headers: { 
       'Content-Type': 'application/json', 
-      'Authorization': 'Bearer ' + token
+      'Authorization': 'Bearer ' + guestIssuerServiceAppToken
     },
     data : data
   };

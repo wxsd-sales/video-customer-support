@@ -1,5 +1,5 @@
 {
-  "name": "video-support-widget-g2g-glitch",
+  "name": "video-support-wxsd",
   "version": "1.0.0",
   "description": "Web Page offering Video Support",
   "main": "server.js",
@@ -10,12 +10,13 @@
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "node-cron": "^3.0.3"
   },
   "author": "Victor Vazquez",
   "license": "ISC",
   "repository": {
-    "url": "https://glitch.com/edit/#!/glitch-hello-node"
+    "url": "https://video-support-wxsd.glitch.me/"
   },
   "engines": {
     "node": "14.x"

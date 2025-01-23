@@ -1,10 +1,22 @@
-# Hello Node!
+# Title
+
+This is a web server, hosting a simple web page, that can be used to offer customer support over video.
+
+This is a web server, hosting a simple web page, that illustrates how customer support with video can be offered joining a Webex Meeting from a browser
 
 
 
-## You built this with Glitch!
 
-[Glitch](https://glitch.com) is a friendly community where millions of people come together to build web apps and websites.
+join a Webex Meeting from a browser.
 
-- Need more help? [Check out our Help Center](https://help.glitch.com/) for answers to any common questions.
-- Ready to make it official? [Become a paid Glitch member](https://glitch.com/pricing) to boost your app with private sharing, more storage and memory, domains and more.
+Reference to Rajitha's
+
+List of devices supported
+
+
+It can be a 1:1 call
+
+# Table of Contents
+- [Overview](#overview)
+
+# Overview
