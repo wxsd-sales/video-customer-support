@@ -12,11 +12,10 @@ if (process.env.NODE_ENV !== 'production'){
 const refreshToken = process.env.REFRESH_TOKEN;
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
-const port = 3000;
+const port = process.env.PORT || 3000;
 let guestIssuerServiceAppToken = '';
 
 async function refreshAccessToken() {
-  console.log('Refreshing access token');
   const data = 
     new URLSearchParams({
     'grant_type': 'refresh_token',
@@ -24,9 +23,8 @@ async function refreshAccessToken() {
     'client_id': clientId,
     'client_secret': clientSecret
     });
-  let config = {
+  const config = {
     method: 'post',
-    maxBodyLength: Infinity,
     url: 'https://webexapis.com/v1/access_token',
     headers: { 
       'Content-type': 'application/x-www-form-urlencoded'
@@ -36,6 +34,7 @@ async function refreshAccessToken() {
   try {
     const response = await axios.request(config)
     guestIssuerServiceAppToken = response.data.access_token
+    console.log('Access token refreshed successfully');
     console.log('Refresh Access Token API status code:', response.status);
   } catch (error) {
     console.error('Error refreshing the access token:', error);
@@ -61,9 +60,8 @@ app.get('/get-access-token', async (req, res) => {
     "subject": "ExternalGuestIdentifier",
     "displayName": "John Doe"
   });
-  let config = {
+  const config = {
     method: 'post',
-    maxBodyLength: Infinity,
     url: 'https://webexapis.com/v1/guests/token',
     headers: { 
       'Content-Type': 'application/json', 
