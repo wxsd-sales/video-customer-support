@@ -16,28 +16,32 @@
         <script src="./main.js"> </script>
         <script>
             (async () => {
-                const token = await getAccessToken();
-                const queryString = window.location.search;
-                const urlParams = new URLSearchParams(queryString);
-                const sipAddress = urlParams.get("sipAddress");
-                let message = urlParams.get("message");
-                if (message) {
-                    message = decodeURIComponent(message);
+                try {
+                    const token = await getAccessToken();
+                    const queryString = window.location.search;
+                    const urlParams = new URLSearchParams(queryString);
+                    const sipAddress = urlParams.get("sipAddress");
+                    let message = urlParams.get("message");
+                    if (message) {
+                        message = decodeURIComponent(message);
+                    }
+                    else {
+                        message = "Hi there! Welcome to our video support page. Please wait for the host to start the meeting";
+                    }
+                    document.getElementById('message').textContent = message;
+                    webexMeetingsWidget({accessToken : token,
+                        meetingDestination : sipAddress,
+                        theme : "light",
+                        draggable : true,
+                        width : "800px",
+                        height : "500px",
+                        layout : "Grid",
+                        inMeetingControls : ['mute-audio','leave-meeting'],
+                        interstitialControls : ['join-meeting']
+                    });
                 }
-                else {
-                    message = "Hi there! Welcome to our video support page. Please wait for the host to start the meeting";
-                }
-                document.getElementById('message').textContent = message;
-                webexMeetingsWidget({accessToken : token,
-                    meetingDestination : sipAddress,
-                    theme : "light",
-                    draggable : true,
-                    width : "800px",
-                    height : "500px",
-                    layout : "Grid",
-                    inMeetingControls : ['mute-audio','leave-meeting'],
-                    interstitialControls : ['join-meeting']
-                });
+                catch (error) {
+                    console.log ('Error getting the access token from the backend: ', error);                }
             })();
         </script>
 </body>

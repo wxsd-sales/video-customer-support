@@ -32,28 +32,42 @@ async function refreshAccessToken() {
     data : data.toString()
   }
   try {
-    const response = await axios.request(config)
-    guestIssuerServiceAppToken = response.data.access_token
+    const response = await axios.request(config);
+    guestIssuerServiceAppToken = response.data.access_token;
     console.log('Access token refreshed successfully');
     console.log('Refresh Access Token API status code:', response.status);
   } catch (error) {
     console.error('Error refreshing the access token:', error);
+    throw (error);
+    // alternative: remove the console.log and build a New Error object that includes error received:
+    // throw new Error ('Error refreshing the access token:', {cause: error } )
   }  
 }
 
-app.use(cors()); // Enable CORS for all routes
-
+// Enable CORS for all routes
+app.use(cors()); 
 // Serve static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// Refresh token the first time, and then run a cron job
+// Initial token refresh
 (async () => {
-  await refreshAccessToken();
+  try {
+    await refreshAccessToken();
+  }
+  catch (error) {
+    console.error('Initial token refresh failed',  error );
+  }
 })();
-// every 2m = cron.schedule('*/2 * * * *', async () => refreshAccessToken());
-// every day at 13h
-cron.schedule('0 13 * * *', async () => refreshAccessToken());
+
+// Schedule token refresh daily at 1 PM
+cron.schedule('0 13 * * *', async () => {
+  try {
+    await refreshAccessToken();
+  }
+  catch (error) {
+    console.error ('Scheduled token refresh failed', error );
+  }
+});
 
 app.get('/get-access-token', async (req, res) => {
   let data = JSON.stringify({
@@ -73,11 +87,12 @@ app.get('/get-access-token', async (req, res) => {
   try {
     const response = await axios.request(config)
     const accessToken = response.data.accessToken
+    console.log('Guest token refreshed successfully');
     console.log('Create guest token API status code:', response.status);
     res.status(200).json({ accessToken }); // Send access token and status code in one line
   } catch (error) {
-    console.error('Error creating the guest user:', error);
-    res.status(500).json({ error: 'Failed to create the guest user' }); // Send error response
+    console.error('Error creating the guest token:', error);
+    res.status(500).json({ error: 'Failed to create the guest token' }); // Send error response
   }
 });
 
