@@ -72,7 +72,7 @@ cron.schedule('0 13 * * *', async () => {
 app.get('/get-access-token', async (req, res) => {
   let data = JSON.stringify({
     "subject": "ExternalGuestIdentifier",
-    "displayName": "John Doe"
+    "displayName": "Johny Doe"
   });
   const config = {
     method: 'post',

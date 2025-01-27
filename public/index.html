@@ -13,30 +13,35 @@
     <script src="./main.js"></script>
     <script>
       (async () => {
-        // const token = "OGVhNzljMTQtYTI4Yy00Mzc3LTg0MDgtYjRmNDVlMmJjY2ExZjNhZjRjMjYtY2M5_P0A1_952e87f4-5c49-4ca1-b285-ee0570c2498c";
-        const token = await getAccessToken();
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const sipAddress = urlParams.get("sipAddress");
-        let message = urlParams.get("message");
-        if (message) {
-          message = decodeURIComponent(message);
-        } else {
-          message =
-            "Hi there! Welcome to our video support page. Please wait for the host to start the meeting";
+        try {
+          const token = await getAccessToken();
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const sipAddress = urlParams.get("sipAddress");
+          let message = urlParams.get("message");
+          if (message) {
+            message = decodeURIComponent(message);
+          }
+          else {
+            message =
+              "Hi there! Welcome to our video support page. Please wait for the host to start the meeting";
+          }
+          document.getElementById("message").textContent = message;
+          webexMeetingsWidget({
+            accessToken: token,
+            meetingDestination: "vvazquez@wxsd.us",
+            theme: "dark",
+            draggable: true,
+            width: "100%",
+            height: "100%",
+            layout: "Grid",
+            inMeetingControls: ["mute-audio", "leave-meeting"],
+            interstitialControls: ["join-meeting"],
+          });
         }
-        document.getElementById("message").textContent = message;
-        webexMeetingsWidget({
-          accessToken: token,
-          meetingDestination: "vvazquez@wxsd.us",
-          theme: "dark",
-          draggable: true,
-          width: "100%",
-          height: "100%",
-          layout: "Grid",
-          inMeetingControls: ["mute-audio", "leave-meeting"],
-          interstitialControls: ["join-meeting"],
-        });
+        catch (error) {
+          console.log ('Error getting the access token from the backend: ', error);
+        }
       })();
     </script>
   </body>
