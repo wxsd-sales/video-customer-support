@@ -8,18 +8,18 @@ async function getAccessToken() {
     try {
         const response = await fetch(url, requestOptions);
         if (!response.ok) {
-            console.error('Backend API status code:', response.status);
-            return null
+            throw new Error (`Webex get access token request error. Status code: ${response.status},  Status message: ${response.statusText}`);
         }
-        else {
-            const data = await response.json();
-            const accessToken = data.accessToken;
-            console.log('Access token sent to Front End');
-            return accessToken;
-        }   
-    }
+        const data = await response.json();
+        if (!data.accessToken) {
+            throw new Error ('No access token received in the response');
+        }
+        const accessToken = data.accessToken;
+        console.log('Access token sent to Front End');
+        return accessToken;
+    }   
     catch (error) {
-        console.error('Error getting the access token from the backend:', error);
-        return null;
+        console.error('Error fetching Webex get access token API', error);
+        throw error;
     }
-}
+} 
