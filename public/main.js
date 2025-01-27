@@ -22,4 +22,4 @@ async function getAccessToken() {
         console.error('Error fetching Webex get access token API', error);
         throw error;
     }
-}
+} 
