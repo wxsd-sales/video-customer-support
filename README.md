@@ -1,22 +1,140 @@
-# Title
+# Video Customer Support
 
-This is a web server, hosting a simple web page, that can be used to offer customer support over video.
-
-This is a web server, hosting a simple web page, that illustrates how customer support with video can be offered joining a Webex Meeting from a browser
-
-
-
-
-join a Webex Meeting from a browser.
-
-Reference to Rajitha's
-
-List of devices supported
-
-
-It can be a 1:1 call
+This is a web server, hosting a simple web page, that illustrates how customer support with video can be offered joining a Webex Meeting from a browser.
 
 # Table of Contents
 - [Overview](#overview)
+- [How to use it](#how-to-use-it)
+- [How to deploy your own version](#how-to-deploy-your-own-version)
+   - [Create a Service App for Guest Management](#create-a-service-app-for-guest-management)
+   - [Authorize your new Service App](#authorize-your-new-service-app)
+   - [Get the Service App Access token](#get-the-service-app-access-token)
+   - [Build your project](#build-your-project)
+- [User Experience](#user-experience)
+- [License](#license)
+- [Disclaimer](#disclaimer)
+- [Contact](#contact)
+
 
 # Overview
+
+Customers willing to join Webex Meetings from a browser, in any device, and want to embed the meetings experience into their web site, having full control of the User Interface, can use the [Browser Webex SDK](https://developer.webex.com/docs/sdks/webex-meetings-sdk-web-introduction). An easy way to do this, with few lines of code, is to utilize the [Webex Meetings Widget](https://developer.webex.com/docs/widgets).
+
+This project is based on [Rajitha Kantheti](https://github.com/rajithaBK)'s [embeddable Meeting Widget](https://github.com/wxsd-sales/embeddable-meetings-widget/edit/main/README.md) project, which offers an easy way to consume the Meetings Widget.
+
+To join a Webex Meeting programmatically, an access token is needed. This _node.js_ server creates a Guest Token using a [Service App for Guest Management](https://developer.webex.com/docs/sa-guest-management).
+
+
+# How to use it
+
+You need to access a web server on glitch (https://video-support-wxsd.gitch.me) adding some URL parameters:
+
+- ```sipAddress```: This can be a Webex Meeting meeting number, a Webex Meeting link, a person (_user@email.com_), or even a Webex cloud-registered device (_device_name@domain.rooms.webex.com_)!. This parameter is mandatory. 
+
+- ```message```:  A short welcome text message that will be shown to the customer. This parameter in optional, if none is provided, ```"Hi there! Welcome to our video support page. Please wait for the host to start the meeting"``` will be used as default. 
+
+
+   Example: ```https://video-support-wxsd.glitch.me/?sipAddress=25321760309@wxsd.webex.com&message=Video%20Support```
+
+## Prerequisites
+
+- Supported Desktop Browsers: Chrome (latest), Firefox (latest), Edge (latest) and Safari (latest)
+
+- Supported Mobile Browsers: Chrome on Android (latest) and Safari on iOS (latest)
+
+   Reference: [Meetings Widget Requirements](https://developer.webex.com/docs/widgets)
+
+# How to deploy your own version
+
+## Prerequisites
+
+- Node.js version >= 14.5 must be installed on the system in order to run this through npm
+- Webex ORG with Webex Meetings enabled. You can get a developer sandbox for free at: https://developer.webex.com/docs/developer-sandbox-guide
+
+## Steps
+
+### Create a Service App for Guest Management
+
+1. Log in the [Webex for developers](https://developer.webex.com/) web site as a Webex administrator in your Webex ORG
+
+2. Click on **Start Building Apps** and on **Create a Service App**
+
+3. Choose the App Name, Icon, Contact Email, and a good description, like for example "Service App for Guest Management"
+
+4. Select the `guest-issuer:read` and `guest-issuer:write` scopes
+
+5. Click on **Add Service App**
+
+6. Save your **Client ID** and **Client Secret** somewhere safe
+
+### Authorize your new Service App
+
+1. Log in [Control Hub](https://admin.webex.com)  as a Webex administrator in your Webex ORG
+
+2. Go to Apps, and click on **Service Apps**. Your new Service App should be listed
+
+3. Click on the Service App, and enable it by clicking on the **Authorize** toggle switch. If you have more than one webex site in your org, choose in what site you want to authorize the Service App
+
+4. Click on **Save**
+
+### Get the Service App Access token
+
+1. Go back to Service App creation web page, and refresh it.
+
+2. Under **Authorized orgs**, choose your Webex ORG, paste your Service App Client Secret, and click on **Generate Tokens**. Store the `access_token` somewhere safe
+
+### Build your project
+
+1. Clone this repository and change directory:
+
+   ```
+   git clone https://github.com/wxsd-sales/create-meeting-connect-flow.git && cd create-meeting-connect-flow
+   ```
+
+2. Install all the dependencies using:
+
+   ```
+   npm install
+   ```
+
+3. Start the application using:
+  
+   ```
+   npm run start
+   ```
+
+4. Go to ```main.js``` file, and change the value for the variable ```myServerUrl```. If you are running the project locally on your laptop, use ```'http://localhost:3000'```
+
+5. Rename the example environment file from `.env.example` to `.env`:
+   ```
+   cp .env.example .env
+   ```
+6. Configure the .env file with your Client ID, Client Secret and Refresh Token. Choose the TCP port to be used, for example 3000
+
+## User Experience
+
+The meeting link generated by the flow will send the customer to this web page: https://video-support-wxsd.glitch.me 
+
+After joining the meeting, the used will be asked to wait for the expert (host) to join:
+
+![lobby](lobby.jpg)
+
+When the expert joins  the communication setup is completed:
+
+![meeting](meeting.jpg)
+
+The video widget is draggable, allowing the end user to move it around the screen.
+
+## License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+
+## Disclaimer
+
+Everything included is for demo and Proof of Concept purposes only. Use of the site is solely at your own risk. This site may contain links to third party content, which we do not warrant, endorse, or assume liability for. These demos are for Cisco Webex use cases, but are not Official Cisco Webex Branded demos.
+ 
+
+## Contact
+
+Please contact the Webex SD team at [wxsd@external.cisco.com](mailto:wxsd@external.cisco.com?subject=CreateMeetingFlow) for questions. Or for Cisco internal, reach out to us on Webex App via our bot globalexpert@webex.bot & choose "Engagement Type: API/SDK Proof of Concept Integration Development". 
+
