@@ -17,13 +17,14 @@
     <title>Video Support</title>
 </head>
 <body>
-        <p id="message" style="font-family: Arial, sans-serif;"></p>
+        <!-- <p id="message" style="font-family: Arial, sans-serif;"></p> -->
         <div id="embeddable-meetings-widget"></div>
         <script src="./main.js"> </script>
         <script>
             (async () => {
                 try {
-                    const token = await getAccessToken();
+                    // const token = await getAccessToken();
+                    const token = 'OGVhNzljMTQtYTI4Yy00Mzc3LTg0MDgtYjRmNDVlMmJjY2ExZjNhZjRjMjYtY2M5_P0A1_952e87f4-5c49-4ca1-b285-ee0570c2498c';
                     const queryString = window.location.search;
                     const urlParams = new URLSearchParams(queryString);
                     const sipAddress = urlParams.get("sipAddress");
@@ -34,16 +35,16 @@
                     else {
                        message = "Hi there! Welcome to our video support page. Please wait for the host to start the meeting";
                     }
-                    document.getElementById('message').textContent = message;
+                    // document.getElementById('message').textContent = message;
                     webexMeetingsWidget({accessToken : token,
                         meetingDestination : sipAddress,
-                        theme : "light",
+                        theme : "dark",
                         draggable : true,
                         width : "100%",
                         height : "100%",
                         layout : "Grid",
-                        inMeetingControls : ['mute-audio','leave-meeting'],
-                        interstitialControls : ['join-meeting']
+                        // inMeetingControls : ['mute-audio','leave-meeting'],
+                        // interstitialControls : ['join-meeting']
                     });
                 }
                 catch (error) {
