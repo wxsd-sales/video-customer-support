@@ -11,6 +11,7 @@ Web server, hosting a simple web page, that illustrates how customer support wit
    - [Authorize your new Service App and get the access token](#authorize-your-new-service-app-and-get-the-access-token)
    - [Build your project](#build-your-project)
 - [User Experience](#user-experience)
+- [Integrations](#integrations)
 - [License](#license)
 - [Disclaimer](#disclaimer)
 - [Contact](#contact)
@@ -23,6 +24,8 @@ Customers willing to join Webex Meetings from a browser, in any device, who want
 This project is based on [Rajitha Kantheti](https://github.com/rajithaBK)'s [embeddable Meeting Widget](https://github.com/wxsd-sales/embeddable-meetings-widget/edit/main/README.md) project, which offers an easy way to consume the Meetings Widget.
 
 To join a Webex Meeting programmatically, an access token is needed. This _node.js_ server creates a Guest Token using a [Service App for Guest Management](https://developer.webex.com/docs/sa-guest-management).
+
+We offer a always-on running instance of the project, and we also provide instruction to deploy your own server.
 
 
 # How to use it
@@ -128,6 +131,12 @@ When the expert joins  the communication setup is completed:
 ![meeting](meeting.jpg)
 
 The video widget is draggable, allowing the end user to move it around the screen.
+
+If you want to modify and customize the suer experience, [deploy your own instance](#build-your-project) and modify the files in the ```public``` folder
+
+## Integrations
+
+This support web page can be used standalone, and can also be easily integrated in, for example, a digital conversation with the customer. In this [repository](https://github.com/wxsd-sales/create-meeting-connect-flow) you will find a Webex Connect flow that schedules a Webex Meeting, and creates a link for the customer to join from the support web page.
 
 ## License
 
