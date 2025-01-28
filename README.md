@@ -30,7 +30,7 @@ We offer a always-on running instance of the project, and we also provide instru
 
 # How to use it
 
-You need to access a web server on glitch (https://video-support-wxsd.gitch.me) adding some URL parameters:
+You can access an always-on instance of the web server on this URL: https://video-support-wxsd.gitch.me). It will accept two URL parameters:
 
 - ```sipAddress```: This can be a Webex Meeting meeting number, a Webex Meeting link, a person (_user@email.com_), or even a Webex cloud-registered device (_device_name@domain.rooms.webex.com_)!. This parameter is mandatory. 
 
