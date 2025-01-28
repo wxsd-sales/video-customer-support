@@ -1,6 +1,6 @@
 # Video Customer Support
 
-This is a web server, hosting a simple web page, that illustrates how customer support with video can be offered joining a Webex Meeting from a browser.
+Web server, hosting a simple web page, that illustrates how customer support with video can be offered joining a Webex Meeting from a browser.
 
 # Table of Contents
 - [Overview](#overview)
@@ -18,7 +18,7 @@ This is a web server, hosting a simple web page, that illustrates how customer s
 
 # Overview
 
-Customers willing to join Webex Meetings from a browser, in any device, and want to embed the meetings experience into their web site, having full control of the User Interface, can use the [Browser Webex SDK](https://developer.webex.com/docs/sdks/webex-meetings-sdk-web-introduction). An easy way to do this, with few lines of code, is to utilize the [Webex Meetings Widget](https://developer.webex.com/docs/widgets).
+Customers willing to join Webex Meetings from a browser, in any device, who want to embed the meetings experience into their web site, having full control of the User Interface, can use the [Browser Webex SDK](https://developer.webex.com/docs/sdks/webex-meetings-sdk-web-introduction). An easy way to do this, with few lines of code, is to utilize the [Webex Meetings Widget](https://developer.webex.com/docs/widgets).
 
 This project is based on [Rajitha Kantheti](https://github.com/rajithaBK)'s [embeddable Meeting Widget](https://github.com/wxsd-sales/embeddable-meetings-widget/edit/main/README.md) project, which offers an easy way to consume the Meetings Widget.
 
@@ -31,7 +31,7 @@ You need to access a web server on glitch (https://video-support-wxsd.gitch.me) 
 
 - ```sipAddress```: This can be a Webex Meeting meeting number, a Webex Meeting link, a person (_user@email.com_), or even a Webex cloud-registered device (_device_name@domain.rooms.webex.com_)!. This parameter is mandatory. 
 
-- ```message```:  A short welcome text message that will be shown to the customer. This parameter in optional, if none is provided, ```"Hi there! Welcome to our video support page. Please wait for the host to start the meeting"``` will be used as default. 
+- ```message```:  A short welcome text message that will be shown to the customer. This parameter in optional, if none is provided, ```"Hi there! Welcome to our video support page. Please wait for the host to start the meeting"``` will be used as default. The text has to be in URL-encoded format.
 
 
    Example: ```https://video-support-wxsd.glitch.me/?sipAddress=25321760309@wxsd.webex.com&message=Video%20Support```
@@ -44,12 +44,15 @@ You need to access a web server on glitch (https://video-support-wxsd.gitch.me) 
 
    Reference: [Meetings Widget Requirements](https://developer.webex.com/docs/widgets)
 
+- Webex ORG with Webex Meetings enabled. The user joining from the browser is a guest, therefore you will need another user joining the Meeting as a host. This project doesn't support guest-to-gest meetings.
+
+   You can get a developer sandbox for free at: https://developer.webex.com/docs/developer-sandbox-guide.
+
 # How to deploy your own version
 
 ## Prerequisites
 
 - Node.js version >= 14.5 must be installed on the system in order to run this through npm
-- Webex ORG with Webex Meetings enabled. You can get a developer sandbox for free at: https://developer.webex.com/docs/developer-sandbox-guide
 
 ## Steps
 
@@ -57,7 +60,7 @@ You need to access a web server on glitch (https://video-support-wxsd.gitch.me) 
 
 1. Log in the [Webex for developers](https://developer.webex.com/) web site as a Webex administrator in your Webex ORG
 
-2. Click on **Start Building Apps** and on **Create a Service App**
+2. Click on **Start Building Apps** and a **Create a Service App**
 
 3. Choose the App Name, Icon, Contact Email, and a good description, like for example "Service App for Guest Management"
 
@@ -66,6 +69,8 @@ You need to access a web server on glitch (https://video-support-wxsd.gitch.me) 
 5. Click on **Add Service App**
 
 6. Save your **Client ID** and **Client Secret** somewhere safe
+
+   Do not close this window, you will need to come back here later.
 
 ### Authorize your new Service App
 
@@ -88,7 +93,7 @@ You need to access a web server on glitch (https://video-support-wxsd.gitch.me) 
 1. Clone this repository and change directory:
 
    ```
-   git clone https://github.com/wxsd-sales/create-meeting-connect-flow.git && cd create-meeting-connect-flow
+   git clone https://github.com/wxsd-sales/video-customer-support.git && cd video-customer-support.git
    ```
 
 2. Install all the dependencies using:
@@ -97,25 +102,27 @@ You need to access a web server on glitch (https://video-support-wxsd.gitch.me) 
    npm install
    ```
 
-3. Start the application using:
+3. Go to ```public/main.js``` file, and change the value for the variable ```myServerUrl```. This must be your server URL, if you are running the project locally on your laptop, use ```'http://localhost:3000'```
+
+4. Rename the example environment file from `.env.example` to `.env`:
+   ```
+   cp .env.example .env
+   ```
+
+5. Configure the .env file with your Client ID, Client Secret and Refresh Token. Choose the TCP port to be used, for example 3000
+
+
+6. Start the application using:
   
    ```
    npm run start
    ```
 
-4. Go to ```main.js``` file, and change the value for the variable ```myServerUrl```. If you are running the project locally on your laptop, use ```'http://localhost:3000'```
-
-5. Rename the example environment file from `.env.example` to `.env`:
-   ```
-   cp .env.example .env
-   ```
-6. Configure the .env file with your Client ID, Client Secret and Refresh Token. Choose the TCP port to be used, for example 3000
-
 ## User Experience
 
 The meeting link generated by the flow will send the customer to this web page: https://video-support-wxsd.glitch.me 
 
-After joining the meeting, the used will be asked to wait for the expert (host) to join:
+After joining the meeting, the user will be asked to wait for the expert (host) to join:
 
 ![lobby](lobby.jpg)
 
