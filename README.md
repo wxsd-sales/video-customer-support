@@ -47,7 +47,7 @@ You can access an always-on instance of the web server on this URL: https://vide
 
    Reference: [Meetings Widget Requirements](https://developer.webex.com/docs/widgets)
 
-- Webex ORG with Webex Meetings enabled. The user joining from the browser is a guest, therefore you will need another user joining the Meeting as a host. This project doesn't support guest-to-gest meetings.
+- A Webex ORG with Webex Meetings enabled. The user joining from the browser is a guest, therefore you will need another user joining the Meeting as a host. This project doesn't support guest-to-gest meetings.
 
    You can get a developer sandbox for free at: https://developer.webex.com/docs/developer-sandbox-guide.
 
