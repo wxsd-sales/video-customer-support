@@ -118,21 +118,21 @@ You can access an always-on instance of the web server on this URL: https://vide
    npm run start
    ```
 
-ADD localhost example
+   Now, you can access the web page using this URL: ```http://localhost:3000/?sipAddress=25334460309@yourdomain.webex.com&message=Video%20Support``` (example for local deployment)
 
 ## User Experience
 
-After joining the meeting, the user will be asked to wait for the expert (host) to join:
+After joining the meeting, the user will be asked to wait for the host to join:
 
 ![lobby](lobby.jpg)
 
-When the expert joins  the communication setup is completed:
+When the host joins  the communication setup is completed:
 
 ![meeting](meeting.jpg)
 
 The video widget is draggable, allowing the end user to move it around the screen.
 
-If you want to modify and customize the suer experience, [deploy your own instance](#build-your-project) and modify the files in the ```public``` folder
+If you want to modify and customize the user experience, [deploy your own instance](#build-your-project) and modify the files in the ```public``` folder
 
 ## Integrations
 
