@@ -93,7 +93,7 @@ You can access an always-on instance of the web server on this URL: https://vide
 1. Clone this repository and change directory:
 
    ```
-   git clone https://github.com/wxsd-sales/video-customer-support.git && cd video-customer-support.git
+   git clone https://github.com/wxsd-sales/video-customer-support.git && cd video-customer-support
    ```
 
 2. Install all the dependencies using:
