@@ -27,6 +27,7 @@
             message =
               "Hi there! Welcome to our video support page. Please wait for the host to start the meeting";
           }
+           console.log ('vvazquez: inside');
           document.getElementById("message").textContent = message;
           webexMeetingsWidget({
             accessToken: token,
@@ -40,8 +41,10 @@
             interstitialControls: ["join-meeting"],
           });
           // make text message size bigger on mobile devices
+          console.log ('vvazquez before: ', window.innerWitdth);
           window.onload = function () {
-            console.log ('vvazquez before: ', window.innerWitdth);
+            console.log ('vvazquez after onlad: ', window.innerWitdth);
+            
             if (window.innerWidth < 768) {
               console.log ("vvazquez after: mobile");
               document.getElementById("message").style.fontSize = "600px";
