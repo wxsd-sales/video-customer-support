@@ -7,9 +7,23 @@
     />
     <script src="https://cdn.jsdelivr.net/gh/WXSD-Sales/embeddable-meetings-widget/docs/bundle.js"></script>
   </head>
+  
+  <style>
+    #message {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Apply this only on mobile devices (max-width: 768px) */
+    @media (max-width: 1500px) {
+      #message {
+        font-size: 400px; /* Bigger text only on mobile */
+      }
+    }
+  
+  </style>
 
   <body>
-    <p id="message" style="font-family: Arial, sans-serif"></p>
+    <p id="message"></p>
     <div id="embeddable-meetings-widget"></div>
     <script src="./main.js"></script>
     <script>
@@ -27,7 +41,6 @@
             message =
               "Hi there! Welcome to our video support page. Please wait for the host to start the meeting";
           }
-           console.log ('vvazquez: inside');
           document.getElementById("message").textContent = message;
           webexMeetingsWidget({
             accessToken: token,
@@ -40,17 +53,6 @@
             inMeetingControls: ["mute-audio", "leave-meeting"],
             interstitialControls: ["join-meeting"],
           });
-          // make text message size bigger on mobile devices
-          console.log ('vvazquez before: ', window.innerWitdth);
-          window.onload = function () {
-            console.log ('vvazquez after onlad: ', window.innerWitdth);
-            
-            if (window.innerWidth < 768) {
-              console.log ("vvazquez after: mobile");
-              document.getElementById("message").style.fontSize = "600px";
-            }
-            
-          }
         }
         catch (error) {
           console.log ('Error getting the access token from the backend: ', error);
