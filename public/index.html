@@ -21,7 +21,7 @@
   </style>
  
   <body>
-    <!--<p id="message"></p> -->
+    <p id="message"></p>
     <div id="embeddable-meetings-widget"></div>
     <script src="./main.js"></script>
     <script>
@@ -39,7 +39,7 @@
             message =
               "Hi there! Welcome to our video support page. Please wait for the host to start the meeting";
           }
-          // document.getElementById("message").textContent = message;
+          document.getElementById("message").textContent = message;
           webexMeetingsWidget({
             accessToken: token,
             meetingDestination: sipAddress,
