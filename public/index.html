@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <p id="message" style="font-size: 70px; font-family: Arial, sans-serif"></p>
+    <p id="message" style="font-family: Arial, sans-serif"></p>
     <div id="embeddable-meetings-widget"></div>
     <script src="./main.js"></script>
     <script>
@@ -39,6 +39,15 @@
             inMeetingControls: ["mute-audio", "leave-meeting"],
             interstitialControls: ["join-meeting"],
           });
+          // make text message size bigger on mobile devices
+          window.onload = function () {
+            console.log ('vvazquez before: ', window.innerWitdth);
+            if (window.innerWidth < 768) {
+              console.log ("vvazquez after: mobile");
+              document.getElementById("message").style.fontSize = "600px";
+            }
+            
+          }
         }
         catch (error) {
           console.log ('Error getting the access token from the backend: ', error);
