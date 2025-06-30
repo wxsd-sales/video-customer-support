@@ -30,14 +30,14 @@ We offer a always-on running instance of the project, and we also provide instru
 
 # How to use it
 
-You can access an always-on instance of the web server on this URL: https://video-support-wxsd.gitch.me). It will accept two URL parameters:
+You can access an always-on instance of the web server on this URL: https://video-customer-support-production.up.railway.app. It will accept two URL parameters:
 
 - ```sipAddress```: This can be a Webex Meeting meeting number, a Webex Meeting link, a person (_user@email.com_), or even a Webex cloud-registered device (_device_name@domain.rooms.webex.com_)!. This parameter is mandatory. 
 
 - ```message```:  A short welcome text message that will be shown to the customer. This parameter in optional, if none is provided, ```"Hi there! Welcome to our video support page. Please wait for the host to start the meeting"``` will be used as default. The text has to be in URL-encoded format.
 
 
-   Example: ```https://video-support-wxsd.glitch.me/?sipAddress=25321760309@wxsd.webex.com&message=Video%20Support```
+   Example: ```https://video-customer-support-production.up.railway.app/?sipAddress=25321760309@wxsd.webex.com&message=Video%20Support```
 
 ## Prerequisites
 
