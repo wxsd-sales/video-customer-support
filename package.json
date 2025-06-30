@@ -19,6 +19,6 @@
     "url": "https://video-support-wxsd.glitch.me/"
   },
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   }
 }
