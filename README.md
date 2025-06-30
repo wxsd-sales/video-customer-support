@@ -37,7 +37,9 @@ You can access an always-on instance of the web server on this URL: https://vide
 - ```message```:  A short welcome text message that will be shown to the customer. This parameter in optional, if none is provided, ```"Hi there! Welcome to our video support page. Please wait for the host to start the meeting"``` will be used as default. The text has to be in URL-encoded format.
 
 
-   Example: ```https://video-customer-support-production.up.railway.app/?sipAddress=25321760309@wxsd.webex.com&message=Video%20Support```
+   Example:
+  ``` bash
+   https://video-customer-support-production.up.railway.app/?sipAddress=25321760309@wxsd.webex.com&message=Video%20Support```
 
 ## Prerequisites
 
