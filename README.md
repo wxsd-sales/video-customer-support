@@ -21,7 +21,7 @@ Web server, hosting a simple web page, that illustrates how customer support wit
 
 Customers willing to join Webex Meetings from a browser, in any device, who want to embed the meetings experience into their web site, having full control of the User Interface, can use the [Browser Webex SDK](https://developer.webex.com/docs/sdks/webex-meetings-sdk-web-introduction). An easy way to do this, with few lines of code, is to utilize the [Webex Meetings Widget](https://developer.webex.com/docs/widgets).
 
-This project is based on [Rajitha Kantheti](https://github.com/rajithaBK)'s [embeddable Meeting Widget](https://github.com/wxsd-sales/embeddable-meetings-widget/edit/main/README.md) project, which offers an easy way to consume the Meetings Widget.
+This project is based on [Rajitha Kantheti](https://github.com/rajithaBK)'s [embeddable Meeting Widget](https://github.com/wxsd-sales/embeddable-meetings-widget) project, which offers an easy way to consume the Meetings Widget.
 
 To join a Webex Meeting programmatically, an access token is needed. This _node.js_ server creates a Guest Token using a [Service App for Guest Management](https://developer.webex.com/docs/sa-guest-management).
 
