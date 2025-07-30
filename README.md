@@ -30,7 +30,7 @@ We offer a always-on running instance of the project, and we also provide instru
 
 # How to use it
 
-You can access an always-on instance of the web server on this URL: https://video-customer-support-production.up.railway.app. It will accept two URL parameters:
+You can access an always-on instance of the web server on this URL: https://video-customer-support.wbx.ninja. It will accept two URL parameters:
 
 - ```sipAddress```: This can be a Webex Meeting meeting number, a Webex Meeting link, a person (_user@email.com_), or even a Webex cloud-registered device (_device_name@domain.rooms.webex.com_)!. This parameter is mandatory. 
 
@@ -39,7 +39,7 @@ You can access an always-on instance of the web server on this URL: https://vide
 
    Example:
   ``` bash
-   https://video-customer-support-production.up.railway.app/?sipAddress=25321760309@wxsd.webex.com&message=Video%20Support
+   https://video-customer-support.wbx.ninja/?sipAddress=25321760309@wxsd.webex.com&message=Video%20Support
   ```
 
 ## Prerequisites
